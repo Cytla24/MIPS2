@@ -39,6 +39,11 @@ main:
 floop:
 	beq $t2, 997,lloop
 	
+	#get each character
+	la $a1, input
+	addu $a1, $a1, $t6
+	lb $a0, 0($a1)
+	
 
 lloop:
 	

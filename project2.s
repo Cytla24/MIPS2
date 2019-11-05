@@ -25,7 +25,7 @@ main:
 	#input string
 	li $v0, 8
 	la $a0, input
-	li $a1, 10
+	li $a1, 1000
 	syscall
 	
 	#instantiate index to 0
@@ -77,7 +77,7 @@ lloop:
 	
 	or $t9, $t9, $t8
 	add $t3, $t6, $zero			#set t2 = first non space value 
-	beq $t9, 0, body
+	beq $t9, 0, test
 	
 	#print each index
 	li $v0, 1
@@ -88,7 +88,14 @@ lloop:
 	addi $t6, $t6, 1
 	j floop
 	
+test: 
+	addi $t1, $t2, 4
+	bge $t3, $t1, invalid
+	
 body:
+
+invalid:
+	
 	
 exit:
 	#End of Main

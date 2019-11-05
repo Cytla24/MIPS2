@@ -71,6 +71,16 @@ lloop:
 	addu $a1, $a1, $t6
 	lb $a0, 0($a1)
 	
+	#branch if character is not a space or tab
+	seq $t9,$a0, 32
+	seq $t8,$a0, 9
+	
+	or $t9, $t9, $t8
+	add $t3, $t6, $zero			#set t2 = first non space value 
+	beq $t9, 0, body
+	
+body:
+	
 exit:
 	#End of Main
 	li $v0,10

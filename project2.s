@@ -17,3 +17,7 @@ main:
 	addi $t9, $zero, 10
 	sub $s1, $s0, $t9				# M = s1
 	
+	#display req for input
+	li $v0, 4
+	la $a0, Ask_Input
+	syscall

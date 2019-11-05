@@ -28,6 +28,14 @@ main:
 	li $a1, 1000
 	syscall
 	
+	#Finding first non space char
+	li $t2, 0
+floop:
+	beq $t2, 997,lloop
+
+lloop:
+	
+	
 exit:
 	#End of Main
 	li $v0,10

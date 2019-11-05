@@ -44,6 +44,10 @@ floop:
 	addu $a1, $a1, $t6
 	lb $a0, 0($a1)
 	
+	
+	#branch if character is not a space
+	bne $a0, 32, lloop 
+	
 	#print each index
 	li $v0, 1
 	addi $a0, $t6, 0

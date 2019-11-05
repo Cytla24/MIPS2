@@ -28,10 +28,17 @@ main:
 	li $a1, 1000
 	syscall
 	
+	#instantiate index to 0
+	addi $t6, $zero, 0
+
+	#declare final reg
+	li $t4, 0
+	
 	#Finding first non space char
 	li $t2, 0
 floop:
 	beq $t2, 997,lloop
+	
 
 lloop:
 	

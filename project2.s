@@ -3,6 +3,7 @@
 .data
 
 	Ask_Input: .asciiz "Please Enter a String\n"
+	invalidinp: .asciiz "invalid input\n"
 	input: .space 1000
 
 .text
@@ -95,7 +96,10 @@ test:
 body:
 
 invalid:
-	
+	#display invalid input
+	li $v0, 4
+	la $a0, invalidinp
+	syscall	
 	
 exit:
 	#End of Main

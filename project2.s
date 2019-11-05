@@ -45,8 +45,12 @@ floop:
 	lb $a0, 0($a1)
 	
 	
-	#branch if character is not a space
-	bne $a0, 32, lloop 
+	#branch if character is not a space or tab
+	seq $t7,$a0, 32
+	seq $t8,$a0, 9
+	
+	or $t7, $t7, $t8 
+	beq $t7, 1, lloop
 	
 	#print each index
 	li $v0, 1

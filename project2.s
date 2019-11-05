@@ -22,6 +22,11 @@ main:
 	la $a0, Ask_Input
 	syscall
 	
+	#input string
+	li $v0, 8
+	la $a0, input
+	li $a1, 1000
+	syscall
 	
 exit:
 	#End of Main

@@ -50,8 +50,8 @@ floop:
 	seq $t8,$a0, 9
 	
 	or $t7, $t7, $t8
-	addi $t2, $t6, $zero			#set t2 = first non space value 
-	beq $t7, 1, lloop
+	add $t2, $t6, $zero			#set t2 = first non space value 
+	beq $t7, 0, lloop
 	
 	#print each index
 	li $v0, 1

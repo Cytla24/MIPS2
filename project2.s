@@ -25,7 +25,7 @@ main:
 	#input string
 	li $v0, 8
 	la $a0, input
-	li $a1, 1000
+	li $a1, 10
 	syscall
 	
 	#instantiate index to 0
@@ -37,7 +37,7 @@ main:
 	#Finding first non space char
 	li $t2, 0
 floop:
-	beq $t2, 997,lloop
+	beq $t6, 9,lloop
 	
 	#get each character
 	la $a1, input
@@ -49,6 +49,8 @@ floop:
 	addi $a0, $t6, 0
 	syscall
 	
+	#increment index
+	addi $t6, $t6, 1
 	j floop
 
 lloop:

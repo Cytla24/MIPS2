@@ -44,6 +44,12 @@ floop:
 	addu $a1, $a1, $t6
 	lb $a0, 0($a1)
 	
+	#print each index
+	li $v0, 1
+	addi $a0, $t6, 0
+	syscall
+	
+	j floop
 
 lloop:
 	

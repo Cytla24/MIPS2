@@ -21,3 +21,9 @@ main:
 	li $v0, 4
 	la $a0, Ask_Input
 	syscall
+	
+	
+exit:
+	#End of Main
+	li $v0,10
+	syscall

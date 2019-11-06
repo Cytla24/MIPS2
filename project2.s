@@ -26,7 +26,7 @@ main:
 	#input string
 	li $v0, 8
 	la $a0, input
-	li $a1, 10
+	li $a1, 1000
 	syscall
 	
 	#instantiate index to 0
@@ -47,7 +47,7 @@ floop:
 	
 	
 	#branch if character is not a space or tab
-	seq $t5, $a0, 10
+	seq $t5, $a0, 0
 	seq $t7,$a0, 32
 	seq $t8,$a0, 9
 	
@@ -65,11 +65,7 @@ floop:
 	addi $t6, $t6, 1
 	add $t2, $t6, $zero
 	j floop
-test: 
-	#Branch if index of last non space/tab char is greater than first non space index + 4
-	addi $t1, $t2, 4
-	bge $t3, $t1, invalid
-	j body
+
 inloop:
 	#loop from 4 characters ahead to check for invalid
 	addi $t6, $t6, 4
@@ -84,7 +80,7 @@ lloop:
 	lb $a0, 0($a1)
 	
 	#branch if character is not a space or tab
-	seq $t5, $a0, 10
+	seq $t5, $a0, 0
 	seq $t9,$a0, 32
 	seq $t8,$a0, 9
 	
@@ -101,8 +97,13 @@ lloop:
 	#increment index
 	addi $t6, $t6, 1
 	j lloop
-	
+
+test: 
+	#Branch if index of last non space/tab char is greater than first non space index + 4
+
 body:
+	
+	j exit
 
 	
 

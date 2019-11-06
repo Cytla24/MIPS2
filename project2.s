@@ -99,10 +99,20 @@ lloop:
 	subi $t6, $t6, 1
 	j lloop
 
-test: 
+test: 	
+	#first = t2, last = t3
+	subi $t3, $t6, 1
+	addi $t1, $t2, 4
+	bge $t3, $t1, invalid
+	li $t5, 0		#Count variable
+	li $t7, 1		#Square Variable
+	add $t6, $t3, $zero
 	
 test2:
-
+	blt $t6,$t2, body
+	
+	
+	j test2
 body:
 	
 	j exit

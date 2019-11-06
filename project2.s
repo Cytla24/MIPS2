@@ -38,7 +38,7 @@ main:
 	#Finding first non space char
 	li $t2, 0
 floop:
-	beq $t6, 9,lloop
+	beq $t6, 997 , test
 	
 	#get each character
 	la $a1, input
@@ -66,8 +66,9 @@ floop:
 	j floop
 
 lloop:
-	#loop to find first non space character from the back
-	li $t6, 999
+	beq $t6, 1000, body 			#if index is at end of string, jump to body
+	#loop from 4 characters ahead to check for invalid
+	addi $t6, $t6, 5
 	
 	#get each character
 	la $a1, input
@@ -82,7 +83,7 @@ lloop:
 	or $t9, $t5, $t9
 	or $t9, $t9, $t8
 	add $t3, $t6, $zero			#set t2 = first non space value 
-	beq $t9, 0, test
+	beq $t9, 0, invalid
 	
 	#print each index
 	li $v0, 1
@@ -91,7 +92,7 @@ lloop:
 	
 	#increment index
 	addi $t6, $t6, 1
-	j floop
+	j lloop
 	
 test: 
 	#Branch if index of last non space/tab char is greater than first non space index + 4

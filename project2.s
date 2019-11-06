@@ -111,6 +111,10 @@ test:
 test2:
 	blt $t6,$t2, body
 	
+	#get each character
+	la $a1, input
+	addu $a1, $a1, $t6
+	lb $a0, 0($a1)
 	
 	j test2
 body:

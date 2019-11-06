@@ -88,7 +88,7 @@ lloop:
 	
 	or $t9, $t5, $t9
 	or $t9, $t9, $t8 
-	beq $t9, 0, invalid
+	beq $t9, 0, invalid			#MOTE LAST = ENTER - 2
 	
 	#print each index
 	li $v0, 1
@@ -96,19 +96,13 @@ lloop:
 	syscall
 	
 	#increment index
-	addi $t6, $t6, 1
+	subi $t6, $t6, 1
 	j lloop
 
 test: 
-	#set t3 = t2 + 3
-	addi $t3, $t2, 3
-	add $t6, $t2, $zero
-	addi $t7, $t3, 1
-test2:
-	#loop to check if all 4 or less 
-	beq $t7, $t6, body
 	
-	j test2
+test2:
+
 body:
 	
 	j exit

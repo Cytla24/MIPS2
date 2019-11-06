@@ -67,8 +67,8 @@ floop:
 	j floop
 
 inloop:
-	#loop from 4 characters ahead to check for invalid
-	addi $t6, $t6, 4
+	#loop from back
+	li $t6, 999
 	j lloop
 
 lloop:	
@@ -83,6 +83,8 @@ lloop:
 	seq $t5, $a0, 0
 	seq $t9,$a0, 32
 	seq $t8,$a0, 9
+	
+	beq $a0, 10, test 			#check if enter key
 	
 	or $t9, $t5, $t9
 	or $t9, $t9, $t8 
@@ -103,6 +105,7 @@ test:
 	add $t6, $t2, $zero
 	addi $t7, $t3, 1
 test2:
+	#loop to check if all 4 or less 
 	beq $t7, $t6, body
 	
 	j test2

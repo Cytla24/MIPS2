@@ -38,7 +38,7 @@ main:
 	#Finding first non space char
 	li $t2, 0
 floop:
-	beq $t6, 997 , test
+	beq $t6, 996 , test
 	
 	#get each character
 	la $a1, input
@@ -66,9 +66,11 @@ floop:
 	j floop
 
 lloop:
-	beq $t6, 1000, body 			#if index is at end of string, jump to body
 	#loop from 4 characters ahead to check for invalid
-	addi $t6, $t6, 5
+	addi $t6, $t6, 4
+	
+	beq $t6, 1000, body 			#if index is at end of string, jump to body
+	
 	
 	#get each character
 	la $a1, input

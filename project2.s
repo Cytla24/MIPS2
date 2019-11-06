@@ -54,7 +54,7 @@ floop:
 	or $t7, $t5, $t7
 	or $t7, $t7, $t8
 	add $t2, $t6, $zero			#set t2 = first non space value 
-	beq $t7, 0, lloop
+	beq $t7, 0, inloop
 	
 	#print each index
 	li $v0, 1
@@ -63,14 +63,20 @@ floop:
 	
 	#increment index
 	addi $t6, $t6, 1
+	add $t2, $t6, $zero
 	j floop
-
-lloop:
+test: 
+	#Branch if index of last non space/tab char is greater than first non space index + 4
+	addi $t1, $t2, 4
+	bge $t3, $t1, invalid
+	j body
+inloop:
 	#loop from 4 characters ahead to check for invalid
 	addi $t6, $t6, 4
-	
+	j lloop
+
+lloop:	
 	beq $t6, 1000, body 			#if index is at end of string, jump to body
-	
 	
 	#get each character
 	la $a1, input
@@ -95,11 +101,6 @@ lloop:
 	#increment index
 	addi $t6, $t6, 1
 	j lloop
-	
-test: 
-	#Branch if index of last non space/tab char is greater than first non space index + 4
-	addi $t1, $t2, 4
-	bge $t3, $t1, invalid
 	
 body:
 

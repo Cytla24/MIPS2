@@ -85,8 +85,7 @@ lloop:
 	seq $t8,$a0, 9
 	
 	or $t9, $t5, $t9
-	or $t9, $t9, $t8
-	add $t3, $t6, $zero			#set t2 = first non space value 
+	or $t9, $t9, $t8 
 	beq $t9, 0, invalid
 	
 	#print each index
@@ -99,8 +98,14 @@ lloop:
 	j lloop
 
 test: 
-	#Branch if index of last non space/tab char is greater than first non space index + 4
-
+	#set t3 = t2 + 3
+	addi $t3, $t2, 3
+	add $t6, $t2, $zero
+	addi $t7, $t3, 1
+test2:
+	beq $t7, $t6, body
+	
+	j test2
 body:
 	
 	j exit

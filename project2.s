@@ -146,6 +146,14 @@ test2:
 	
 	and $s5, $s5, $s6
 	
+	#verify if any are true
+	or $s7, $s2, $s3
+	or $s7, $s7, $s5
+
+	#if not valid, skip to next char
+	li $t8, 1
+	bne $s7, $t8, invalid
+	
 	j test2
 body:
 	

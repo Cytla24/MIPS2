@@ -104,7 +104,7 @@ test:
 	subi $t3, $t6, 1
 	addi $t1, $t2, 4
 	bge $t3, $t1, invalid
-	li $t5, 0		#Count variable
+	li $t9, 0		#Count variable
 	li $t7, 1		#Square Variable
 	add $t6, $t3, $zero
 	
@@ -125,6 +125,16 @@ test2:
 	slt $s7, $a0, $t5
 	
 	and $s2, $s2, $s7
+	
+	#Check if big  letter
+	li $t5, 64		
+	sgt $s3, $a0, $t5
+	
+	li $t5, 0
+	addi $t5, $s1, 65		# t5 = s1 + ord(A)
+	slt $s4, $a0, $t5
+	
+	and $s3, $s3, $s4
 	
 	j test2
 body:

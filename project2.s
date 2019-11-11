@@ -174,6 +174,13 @@ endcountloop:
 	j increment
 	
 letters:
+	#separate small letters from big letters
+	bne $s3, $t8, small
+	li $t5, 0			#temporary increment
+	li $t0, 65
+
+	j increment
+small:
 
 increment:
 	#decrement counter

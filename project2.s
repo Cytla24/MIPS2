@@ -153,12 +153,17 @@ test2:
 	bne $s7, $t8, invalid
 	
 	li $t5, 0
+	li $t7, 1 		#reset SQ to zero
 	
 countloop:
-	mult $t5, $t7
+	bge $t5, $t9, endcountloop
+	mult $s0, $t7
 	mflo $t7
-	blt $t5, $t9, countloop
+	addi $t5, $t5, 1
+	j countloop
 	
+endcountloop:
+
 	#decrement counter
 	subi $t6, $t6, 1
 	j test2

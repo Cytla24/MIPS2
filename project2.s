@@ -130,8 +130,7 @@ test2:
 	li $t5, 64		
 	sgt $s3, $a0, $t5
 	
-	li $t5, 0
-	addi $t5, $s1, 65		# t5 = s1 + ord(A)
+	li $t5, 91
 	slt $s4, $a0, $t5
 	
 	and $s3, $s3, $s4
@@ -140,8 +139,7 @@ test2:
 	li $t5, 96
 	sgt $s5, $a0, $t5
 	
-	li $t5, 0
-	addi $t5, $s1, 97
+	li $t5, 123
 	slt $s6, $a0, $t5
 	
 	and $s5, $s5, $s6

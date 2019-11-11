@@ -72,7 +72,7 @@ inloop:
 	j lloop
 
 lloop:	
-	beq $t6, 1000, body 			#if index is at end of string, jump to body
+	beq $t6, $t2, body 			#if index is back at t2, jump to body
 	
 	#get each character
 	la $a1, input

@@ -154,6 +154,8 @@ test2:
 	li $t8, 1
 	bne $s7, $t8, invalid
 	
+	#decrement counter
+	subi $t6, $t6, 1
 	j test2
 body:
 	

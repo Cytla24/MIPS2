@@ -163,7 +163,16 @@ countloop:
 	j countloop
 	
 endcountloop:
+		#separate numbers from other valid inputs
+	bne $s2, $t8, letters
+	li $t5, 0				#temporary increment
+	li $t0, 48
 
+	j increment
+	
+letters:
+
+increment:
 	#decrement counter
 	subi $t6, $t6, 1
 	j test2

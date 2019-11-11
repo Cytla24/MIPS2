@@ -178,7 +178,9 @@ letters:
 	bne $s3, $t8, small
 	li $t5, 0			#temporary increment
 	li $t0, 65
-
+	sub $t5, $a0, $t0
+	addi $t5, $t5, 10
+	add $t4, $t4, $t5	
 	j increment
 small:
 

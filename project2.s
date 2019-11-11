@@ -152,6 +152,13 @@ test2:
 	li $t8, 1
 	bne $s7, $t8, invalid
 	
+	li $t5, 0
+	
+countloop:
+	mult $t5, $t7
+	mflo $t7
+	blt $t5, $t9, countloop
+	
 	#decrement counter
 	subi $t6, $t6, 1
 	j test2

@@ -90,10 +90,7 @@ lloop:
 	or $t9, $t9, $t8 
 	beq $t9, 0, invalid			#MOTE LAST = ENTER - 2
 	
-	#print each index
-	li $v0, 1
-	addi $a0, $t6, 0
-	syscall
+
 	
 	#increment index
 	subi $t6, $t6, 1
@@ -198,6 +195,8 @@ small:
 	li $v0, 11
 
 increment:
+	#increment count
+	addi $t9, $t9, 1
 	#decrement counter
 	subi $t6, $t6, 1
 	j test2

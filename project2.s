@@ -155,6 +155,7 @@ test2:
 	li $t5, 0
 	li $t7, 1 		#reset SQ to zero
 	
+	#loop to find the square of base we would be multiplying by
 countloop:
 	bge $t5, $t9, endcountloop
 	mult $s0, $t7
@@ -181,10 +182,18 @@ letters:
 	sub $t5, $a0, $t0
 	addi $t5, $t5, 10
 	mult $t5, t7
-	mflo $t5
+	mflo $t5			#multiply by square
 	add $t4, $t4, $t5	
 	j increment
+	
 small:
+	li $t5, 0			#temporary increment
+	li $t0, 97
+	sub $t5, $a0, $t-
+	addi $t5, $t5, 10
+	add $t4, $t4, $t5
+
+	li $v0, 11
 
 increment:
 	#decrement counter

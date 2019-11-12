@@ -189,8 +189,10 @@ letters:
 small:
 	li $t5, 0			#temporary increment
 	li $t0, 97
-	sub $t5, $a0, $t-
+	sub $t5, $a0, $t0
 	addi $t5, $t5, 10
+	mult $t5, t7
+	mflo $t5	
 	add $t4, $t4, $t5
 
 	li $v0, 11

@@ -169,7 +169,7 @@ endcountloop:
 	li $t5, 0				#temporary increment
 	li $t0, 48
 	sub $t5, $a0, $t0
-	mult $t5, t7
+	mult $t5, $t7
 	mflo $t5
 	add $t4, $t4, $t5
 	j increment
@@ -181,7 +181,7 @@ letters:
 	li $t0, 65
 	sub $t5, $a0, $t0
 	addi $t5, $t5, 10
-	mult $t5, t7
+	mult $t5, $t7
 	mflo $t5			#multiply by square
 	add $t4, $t4, $t5	
 	j increment
@@ -191,7 +191,7 @@ small:
 	li $t0, 97
 	sub $t5, $a0, $t0
 	addi $t5, $t5, 10
-	mult $t5, t7
+	mult $t5, $t7
 	mflo $t5	
 	add $t4, $t4, $t5
 
@@ -202,7 +202,9 @@ increment:
 	subi $t6, $t6, 1
 	j test2
 body:
-	
+	li $v0, 1
+	addi $a0, $t4, 0
+	syscall
 	j exit
 
 	

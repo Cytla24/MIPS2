@@ -180,6 +180,8 @@ letters:
 	li $t0, 65
 	sub $t5, $a0, $t0
 	addi $t5, $t5, 10
+	mult $t5, t7
+	mflo $t5
 	add $t4, $t4, $t5	
 	j increment
 small:

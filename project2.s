@@ -56,10 +56,6 @@ floop:
 	add $t2, $t6, $zero			#set t2 = first non space value 
 	beq $t7, 0, inloop
 	
-	#print each index
-	li $v0, 1
-	addi $a0, $t6, 0
-	syscall
 	
 	#increment index
 	addi $t6, $t6, 1

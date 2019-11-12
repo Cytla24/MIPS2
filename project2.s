@@ -89,12 +89,14 @@ lloop:
 
 	
 	#increment index
-	subi $t6, $t6, 1
+	li $t1, 1
+	sub $t6, $t6, $t1
 	j lloop
 
 test: 	
 	#first = t2, last = t3
-	subi $t3, $t6, 1
+	li $t1, 1
+	sub $t3, $t6, $t1
 	addi $t1, $t2, 4
 	bge $t3, $t1, invalid
 	li $t9, 0		#Count variable
@@ -195,7 +197,8 @@ increment:
 	#increment count
 	addi $t9, $t9, 1
 	#decrement counter
-	subi $t6, $t6, 1
+	li $t1, 1
+	sub $t6, $t6, $t1
 	j test2
 body:
 	li $v0, 1

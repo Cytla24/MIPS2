@@ -127,7 +127,7 @@ test2:
 	li $t5, 64		
 	sgt $s3, $a0, $t5
 	
-	li $t5, 91
+	li $t5, 86
 	slt $s4, $a0, $t5
 	
 	and $s3, $s3, $s4
@@ -136,7 +136,7 @@ test2:
 	li $t5, 96
 	sgt $s5, $a0, $t5
 	
-	li $t5, 123
+	li $t5, 118
 	slt $s6, $a0, $t5
 	
 	and $s5, $s5, $s6
@@ -184,6 +184,7 @@ letters:
 	j increment
 	
 small:
+	bne $s5, $t8, invalid
 	li $t5, 0			#temporary increment
 	li $t0, 97
 	sub $t5, $a0, $t0

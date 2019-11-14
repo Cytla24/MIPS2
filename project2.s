@@ -159,8 +159,10 @@ countloop:
 	j countloop
 	
 endcountloop:
-	addi $a1, $a0, 0
+	addi $a1, $a0, 0		#a1 = $a0
 	jal convert
+	
+	addi $t5, $v1, 0		#t5 = returned value
 	
 	mult $t5, $t7
 	mflo $t5			#multiply by square

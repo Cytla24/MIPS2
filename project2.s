@@ -159,7 +159,37 @@ countloop:
 	j countloop
 	
 endcountloop:
-		#separate numbers from other valid inputs
+	
+
+increment:
+	#increment count
+	addi $t9, $t9, 1
+	#decrement counter
+	li $t1, 1
+	sub $t6, $t6, $t1
+	j test2
+body:
+	li $v0, 1
+	addi $a0, $t4, 0
+	syscall
+	j exit
+
+	
+
+invalid:
+	#display invalid input
+	li $v0, 4
+	la $a0, invalidinp
+	syscall	
+	
+exit:
+	#End of Main
+	li $v0,10
+	syscall
+	
+	
+convert:
+	#separate numbers from other valid inputs
 	bne $s2, $t8, letters
 	li $t5, 0				#temporary increment
 	li $t0, 48
@@ -192,29 +222,3 @@ small:
 	add $t4, $t4, $t5
 
 	li $v0, 11
-
-increment:
-	#increment count
-	addi $t9, $t9, 1
-	#decrement counter
-	li $t1, 1
-	sub $t6, $t6, $t1
-	j test2
-body:
-	li $v0, 1
-	addi $a0, $t4, 0
-	syscall
-	j exit
-
-	
-
-invalid:
-	#display invalid input
-	li $v0, 4
-	la $a0, invalidinp
-	syscall	
-	
-exit:
-	#End of Main
-	li $v0,10
-	syscall

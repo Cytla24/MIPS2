@@ -200,9 +200,7 @@ convert:
 	li $t5, 0				#temporary increment
 	li $t0, 48
 	sub $t5, $a0, $t0
-	mult $t5, $t7
-	mflo $t5
-	add $t4, $t4, $t5
+	addi $v1, $t5, 0
 	jr $ra
 	
 letters:
@@ -211,7 +209,8 @@ letters:
 	li $t5, 0			#temporary increment
 	li $t0, 65
 	sub $t5, $a0, $t0
-	addi $t5, $t5, 10	
+	addi $t5, $t5, 10
+	addi $v1, $t5, 0	
 	jr $ra
 	
 small:
@@ -220,8 +219,7 @@ small:
 	li $t0, 97
 	sub $t5, $a0, $t0
 	addi $t5, $t5, 10
-	mult $t5, $t7
-	mflo $t5	
-	add $t4, $t4, $t5
+	addi $v1, $t5, 0
+	jr $ra
 
 

@@ -159,7 +159,13 @@ countloop:
 	j countloop
 	
 endcountloop:
+	addi $a1, $a0, 0
+	jal convert
 	
+	mult $t5, $t7
+	mflo $t5			#multiply by square
+	add $t4, $t4, $t5
+	li $v0, 11
 
 increment:
 	#increment count
@@ -197,7 +203,7 @@ convert:
 	mult $t5, $t7
 	mflo $t5
 	add $t4, $t4, $t5
-	j increment
+	jr $ra
 	
 letters:
 	#separate small letters from big letters
@@ -205,11 +211,8 @@ letters:
 	li $t5, 0			#temporary increment
 	li $t0, 65
 	sub $t5, $a0, $t0
-	addi $t5, $t5, 10
-	mult $t5, $t7
-	mflo $t5			#multiply by square
-	add $t4, $t4, $t5	
-	j increment
+	addi $t5, $t5, 10	
+	jr $ra
 	
 small:
 	bne $s5, $t8, invalid
@@ -221,4 +224,4 @@ small:
 	mflo $t5	
 	add $t4, $t4, $t5
 
-	li $v0, 11
+

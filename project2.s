@@ -1,3 +1,4 @@
+  
 # MIPS Programming Project 2 
 # Aimie Ojuba - @02837763
 .data
@@ -28,6 +29,18 @@ main:
 	la $a0, input
 	li $a1, 1000
 	syscall
+	
+	jal convert
+	
+	beq $v1, 0, end
+	li $v0, 1
+	addi $a0, $v1, 0
+	syscall
+
+end:
+	li $v0,10
+	syscall
+convert:
 	
 	#instantiate index to 0
 	addi $t6, $zero, 0
@@ -159,14 +172,38 @@ countloop:
 	j countloop
 	
 endcountloop:
-	addi $a1, $a0, 0		#a1 = $a0
-	jal convert
+		#separate numbers from other valid inputs
+	bne $s2, $t8, letters
+	li $t5, 0				#temporary increment
+	li $t0, 48
+	sub $t5, $a0, $t0
+	mult $t5, $t7
+	mflo $t5
+	add $t4, $t4, $t5
+	j increment
 	
-	addi $t5, $v1, 0		#t5 = returned value
-	
+letters:
+	#separate small letters from big letters
+	bne $s3, $t8, small
+	li $t5, 0			#temporary increment
+	li $t0, 65
+	sub $t5, $a0, $t0
+	addi $t5, $t5, 10
 	mult $t5, $t7
 	mflo $t5			#multiply by square
+	add $t4, $t4, $t5	
+	j increment
+	
+small:
+	bne $s5, $t8, invalid
+	li $t5, 0			#temporary increment
+	li $t0, 97
+	sub $t5, $a0, $t0
+	addi $t5, $t5, 10
+	mult $t5, $t7
+	mflo $t5	
 	add $t4, $t4, $t5
+
 	li $v0, 11
 
 increment:
@@ -177,9 +214,7 @@ increment:
 	sub $t6, $t6, $t1
 	j test2
 body:
-	li $v0, 1
-	addi $a0, $t4, 0
-	syscall
+	addi $v1, $t4, 0
 	j exit
 
 	
@@ -191,37 +226,5 @@ invalid:
 	syscall	
 	
 exit:
-	#End of Main
-	li $v0,10
-	syscall
-	
-	
-convert:
-	#separate numbers from other valid inputs
-	bne $s2, $t8, letters
-	li $t5, 0				#temporary increment
-	li $t0, 48
-	sub $t5, $a0, $t0
-	addi $v1, $t5, 0
 	jr $ra
 	
-letters:
-	#separate small letters from big letters
-	bne $s3, $t8, small
-	li $t5, 0			#temporary increment
-	li $t0, 65
-	sub $t5, $a0, $t0
-	addi $t5, $t5, 10
-	addi $v1, $t5, 0	
-	jr $ra
-	
-small:
-	bne $s5, $t8, invalid
-	li $t5, 0			#temporary increment
-	li $t0, 97
-	sub $t5, $a0, $t0
-	addi $t5, $t5, 10
-	addi $v1, $t5, 0
-	jr $ra
-
-

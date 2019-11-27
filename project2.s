@@ -4,6 +4,7 @@
 .data
 
 	Ask_Input: .asciiz "Please Enter a String\n"
+	in: .asciiz "im in\n"
 	invalidinp: .asciiz "invalid input\n"
 	input: .space 1000
 
@@ -32,9 +33,9 @@ main:
 	
 	jal convert
 	
-	beq $v1, 0, end
+	beq $v0, 4, end
 	li $v0, 1
-	addi $a0, $v1, 0
+	add $a0, $v1, $zero
 	syscall
 
 end:
@@ -81,7 +82,7 @@ inloop:
 	j lloop
 
 lloop:	
-	beq $t6, $t2, body 			#if index is back at t2, jump to body
+	blt $t6, $t2, body 			#if index is back at t2, jump to body
 	
 	#get each character
 	la $a1, input
@@ -92,12 +93,14 @@ lloop:
 	seq $t5, $a0, 0
 	seq $t9,$a0, 32
 	seq $t8,$a0, 9
+	seq $t0, $a0,10
 	
-	beq $a0, 10, test 			#check if enter key
+	#beq $a0, 10, test 			#check if enter key
 	
 	or $t9, $t5, $t9
+	or $t9, $t0, $t9
 	or $t9, $t9, $t8 
-	beq $t9, 0, invalid			#MOTE LAST = ENTER - 2
+	beq $t9, 0, test			#MOTE LAST = ENTER - 2
 	
 
 	
@@ -107,11 +110,17 @@ lloop:
 	j lloop
 
 test: 	
+	
+	#display req for input
+	li $v0, 4
+	la $a0, in
+	syscall
+	
 	#first = t2, last = t3
-	li $t1, 1
+	li $t1, 0
 	sub $t3, $t6, $t1
 	addi $t1, $t2, 4
-	bge $t3, $t1, invalid
+	bgt $t3, $t1, invalid
 	li $t9, 0		#Count variable
 	li $t7, 1		#Square Variable
 	add $t6, $t3, $zero
